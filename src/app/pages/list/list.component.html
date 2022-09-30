@@ -1,0 +1,50 @@
+
+
+<div >
+
+  <div *ngIf="ingredientsService.restCocktails">
+    <div *ngIf="ingredientsService.showClear()">
+      <mat-card class="divider" [style.background-color]="'#fff000'" *ngIf="ingredientsService.restCocktails.length > 0">
+        <mat-label>Suche</mat-label>
+      </mat-card>
+    </div>
+  </div>
+
+
+  <div style="height: 4px"></div>
+
+  <div *ngFor="let cocktail of ingredientsService.filteredCocktails">
+    <app-show-cocktail [cocktail]="cocktail" [cocktailService]="cocktailService"></app-show-cocktail>
+  </div>
+
+  <div style="height: 10px"></div>
+
+  <div *ngIf="ingredientsService.restCocktails">
+    <div *ngIf="ingredientsService.showClear()">
+      <mat-card class="divider" [style.background-color]="'#d3d3d3'" (click)="showRest = !showRest" *ngIf="ingredientsService.restCocktails.length > 0">
+        <button class="divider_button_left" mat-icon-button>
+          <mat-icon *ngIf="!showRest">keyboard_arrow_up</mat-icon>
+          <mat-icon *ngIf="showRest">keyboard_arrow_down</mat-icon>
+        </button>
+        <mat-label class="divider_text">Restlichen</mat-label>
+        <button class="divider_button_right" mat-icon-button>
+          <mat-icon *ngIf="!showRest">keyboard_arrow_up</mat-icon>
+          <mat-icon *ngIf="showRest">keyboard_arrow_down</mat-icon>
+        </button>
+      </mat-card>
+    </div>
+  </div>
+
+  <div style="height: 4px"></div>
+
+  <div *ngIf="showRest">
+    <div *ngFor="let cocktail of ingredientsService.restCocktails">
+      <app-show-cocktail [cocktail]="cocktail" [cocktailService]="cocktailService"></app-show-cocktail>
+    </div>
+  </div>
+
+  <div style="height: 4px"></div>
+
+</div>
+
+

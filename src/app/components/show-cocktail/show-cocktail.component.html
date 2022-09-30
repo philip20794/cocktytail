@@ -1,0 +1,30 @@
+<mat-expansion-panel #expansionPanel class="card" [expanded]="cocktailService.selectedCocktail === cocktail"
+                     (click)="cocktailService.selectedCocktail = cocktail">
+  <mat-expansion-panel-header>
+    <mat-panel-title><mat-label>{{cocktailShown.name}}</mat-label></mat-panel-title>
+    <mat-panel-description *ngIf="expansionPanel.expanded"><mat-label>{{cocktailShown.alcoholLevel}}%</mat-label></mat-panel-description>
+  </mat-expansion-panel-header>
+  <div class="container" [style.height]="cocktailShown.ingredients.length * 21 + 'px'">
+    <mat-list class="one">
+      <mat-list-item style="height: 22px" *ngFor="let ingredient of cocktailShown.ingredients">
+        <div mat-line><mat-label>{{ingredient.amount}} {{ingredient.unit}} {{ingredient.name}} </mat-label></div>
+      </mat-list-item>
+    </mat-list>
+    <div class="two">
+      <div>
+        <mat-form-field style="width: 100px">
+          <mat-label>Volumen</mat-label>
+          <input matInput [(ngModel)]="volumen" (change)="volumeUpdate()"
+                 type="number" pattern="[0-9]*" inputmode="decimal">
+          <span matSuffix>ml</span>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-icon-button (click)="editCocktail(cocktail)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-expansion-panel>
+

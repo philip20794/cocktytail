@@ -1,0 +1,26 @@
+<div class="content-main">
+  <div class="content-inside">
+    <div class="menuBottomContainer">
+      <div class="menuBottomItem" [class.menuBottomItemActive]="active === 1" (click)="active = 1">
+        <div class="menuBottomItemInside">
+          <mat-icon class="menuIconSize">local_bar</mat-icon>
+        </div>
+      </div>
+      <div class="menuBottomItem" [class.menuBottomItemActive]="active === 2" (click)="active = 2">
+        <div class="menuBottomItemInside">
+          <mat-icon class="menuIconSize">search</mat-icon>
+        </div>
+      </div>
+      <div class="menuBottomItem" [class.menuBottomItemActive]="active === 3" (click)="active = 3">
+        <div class="menuBottomItemInside">
+          <mat-icon class="menuIconSize">add</mat-icon>
+        </div>
+      </div>
+    </div>
+    <div class="main-content-fixed">
+      <app-list *ngIf="active === 1" [cocktailService]="cocktailsService"></app-list>
+      <app-filter *ngIf="active === 2" [cocktailService]="cocktailsService"></app-filter>
+      <app-add *ngIf="active === 3" [cocktailService]="cocktailsService"></app-add>
+    </div>
+  </div>
+</div>

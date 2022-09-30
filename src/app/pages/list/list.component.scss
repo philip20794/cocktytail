@@ -1,0 +1,25 @@
+.divider{
+  height: 8px;
+  font-size: larger;
+  padding-top: 5px;
+  width: calc(100% - 40px);
+  margin: auto;
+}
+
+.divider_text{
+  position: relative;
+  top: -6px;
+  left: 0;
+}
+
+.divider_button_left{
+  position: relative;
+  top: -9px;
+  left: calc(-50% + 70px);
+}
+
+.divider_button_right{
+  position: relative;
+  top: -9px;
+  left: calc(50% - 70px);
+}

@@ -1,0 +1,12 @@
+<h2 matDialogTitle><mat-label>{{cocktail.name}} | {{cocktail.alcoholLevel}}% | {{cocktail.volume}}ml</mat-label></h2>
+<div *ngFor="let ingredient of cocktail.ingredients">
+  <app-edit-ingredient [ingredient]="ingredient" (changed)="cocktailService.update(cocktail)" [cocktailService]="cocktailService"
+                       (delete)="removeIngredient(ingredient)" [fontsize]="11"></app-edit-ingredient>
+</div>
+
+<app-edit-ingredient [ingredient]="newIngredient" (changed)="addIngredient()" [cocktailService]="cocktailService"
+                     [fontsize]="11"></app-edit-ingredient>
+
+<div matDialogActions>
+  <button mat-raised-button color="warn" (click)="askToDelete()">Löschen</button>
+</div>

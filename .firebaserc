@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "cocktytail": {
+      "hosting": {
+        "cocktytail": [
+          "cocktytail"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "cocktytail"
+  }
+}

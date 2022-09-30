@@ -1,0 +1,41 @@
+<div class="login-container">
+  <mat-card class="login">
+    <mat-card-header>
+      <mat-card-title>Neue Registrierung</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <mat-form-field class="login" appearance="fill">
+          <mat-label>Enter your name</mat-label>
+          <input matInput placeholder="Max" [formControl]="name" required>
+          <mat-error *ngIf="name.invalid">{{getErrorMessageName()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="login" appearance="fill">
+          <mat-label>Enter your email</mat-label>
+          <input matInput placeholder="max@example.com" type="email" [formControl]="email" required>
+          <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="login" appearance="fill">
+          <mat-label>Enter a password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" type="password" [formControl]="password" required>
+          <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon color="primary" >{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <button mat-raised-button (click)="authService.SignUp(name.value, email.value, password.value)">Registrieren</button>
+      <p>
+        <mat-label>Du hast bereits ein Account?
+          <a routerLink="/sign-in"> Zurück zum Login</a>
+        </mat-label>
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+

@@ -1,0 +1,24 @@
+<mat-toolbar color="primary" style="height: 30px">
+  <span>Cocktytail</span>
+  <span class="example-spacer"></span>
+
+
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>settings</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+
+    <button mat-menu-item (click)="openPolicy()">
+      <mat-icon>policy</mat-icon>
+      <mat-label>Datenschutz</mat-label>
+    </button>
+    <button mat-menu-item (click)="authService.SignOut()" [disabled]="!authService.isLoggedIn">
+      <mat-icon>logout</mat-icon>
+      <mat-label>Logout</mat-label>
+    </button>
+
+    <button mat-menu-item [disabled]="!authService.isLoggedIn">
+      <mat-slide-toggle>Slide me!</mat-slide-toggle>
+    </button>
+  </mat-menu>
+</mat-toolbar>

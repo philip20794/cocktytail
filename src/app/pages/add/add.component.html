@@ -1,0 +1,28 @@
+<div *ngIf="!cocktailService.loaded">
+  <mat-spinner style="margin: auto; top: 100px" [diameter]="200"></mat-spinner>
+</div>
+
+
+<div *ngIf="cocktailService.loaded">
+  <div style="height: 10px"></div>
+
+  <div>
+    <mat-form-field>
+      <input matInput [(ngModel)]="cocktail.name">
+      <mat-label>Name</mat-label>
+    </mat-form-field>
+  </div>
+  <div *ngFor="let ingredient of cocktail.ingredients">
+    <app-edit-ingredient [ingredient]="ingredient" (changed)="cocktailService.update(cocktail)" [cocktailService]="cocktailService"
+                         (delete)="removeIngredient(ingredient)" [hideDelete]="false"></app-edit-ingredient>
+  </div>
+
+  <app-edit-ingredient [ingredient]="newIngredient" (changed)="addIngredient()" [cocktailService]="cocktailService" [showSave]="true"></app-edit-ingredient>
+
+  <div style="height: 44px"></div>
+
+  <div>
+    <button class="save" color="accent" [disabled]="!canSave()" mat-raised-button (click)="save()">Speichern</button>
+  </div>
+</div>
+

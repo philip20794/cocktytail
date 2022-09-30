@@ -1,0 +1,78 @@
+<div *ngIf="error === ''">
+  <div class="login-container" *ngIf="showLoginContainer">
+    <mat-card class="login">
+      <mat-card-header>
+        <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          <mat-form-field color="primary" class="login" appearance="fill">
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="max@example.com" type="email" [formControl]="email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="login" appearance="fill">
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required
+                   (keypress)="keyPress($event)" type="password">
+            <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon >{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+          <button mat-raised-button (click)="loginClick()">Login</button>
+        </div>
+        <p>
+          <mat-label>Oder</mat-label>
+        </p>
+        <p>
+          <button mat-raised-button (click)="authService.GoogleAuth()">
+            <mat-icon style="width: 25px; height:25px"
+                      svgIcon="google-logo"></mat-icon>
+            <mat-label style="margin-left: 20px">Mit Google anmelden</mat-label>
+            </button>
+        </p>
+        <p>
+          <mat-label>
+            Hast du dein
+            <a routerLink="/forgot-password">Passwort vergessen?</a>
+          </mat-label>
+        </p>
+        <p>
+          <mat-label>Möchtest du dich neu
+            <a routerLink="/sign-up">regestrieren?</a>
+          </mat-label>
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div *ngIf="!showLoginContainer" class="login-container">
+    <mat-spinner [diameter]="200"></mat-spinner>
+  </div>
+</div>
+<div *ngIf="error !== ''">
+  <div class="login-container">
+    <mat-card class="transparent">
+
+      <mat-card-header>
+        <mat-card-title>
+          <mat-error>{{error}}</mat-error>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item (click)="refresh()">
+            <mat-icon class="textONScreen" mat-list-icon>refresh</mat-icon>
+            <mat-label class="textONScreen" matLine>Erneut probieren</mat-label>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</div>
+
+

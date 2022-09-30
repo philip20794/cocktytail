@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  height: calc(100vh - 110px);
+  overflow-y: hidden;
+}
+
+.one {
+  width: 100vh;
+  margin-left: 3px;
+  margin-right: 3px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.two {
+  width: 100vh;
+  margin-left: 3px;
+  margin-right: 3px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.card {
+  margin: 3px;
+}
+
+.switch{
+  position: fixed;
+  bottom: 74px;
+  width: calc(50% - 10px);
+  left: 5px;
+}
+.clear{
+  position: fixed;
+  bottom: 74px;
+  width: calc(50% - 10px);
+  left: calc(50% + 5px);
+}

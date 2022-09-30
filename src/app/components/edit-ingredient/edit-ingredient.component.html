@@ -1,0 +1,48 @@
+<div [style.font-size]="fontsize + 'px'">
+  <mat-form-field [style.width]="fontsize * 8.5 + 'px'">
+    <mat-label>Menge</mat-label>
+    <input matInput [(ngModel)]="ingredient.amount" (change)="changed.emit(ingredient)"
+           type="number" pattern="[0-9]*" inputmode="decimal">
+    <span matSuffix>
+    <mat-select [(ngModel)]="ingredient.unit" [style.width]="fontsize * 2.85 + 'px'" (selectionChange)="updateIsLiquid()">
+      <mat-option value=""></mat-option>
+      <mat-option value="ml">ml</mat-option>
+      <mat-option value="cl">cl</mat-option>
+      <mat-option value="g">g</mat-option>
+      <mat-option value="TL">TL</mat-option>
+      <mat-option value="EL">EL</mat-option>
+    </mat-select>
+    </span>
+  </mat-form-field>
+  <mat-form-field *ngIf="!ingredient.isLiquid" [style.width]="fontsize * (10.7 + 5.5) + 'px'">
+    <input matInput [(ngModel)]="ingredient.name" (change)=ingredientNameChange() [matAutocomplete]="auto" [formControl]="myControl">
+    <mat-label>Zutat</mat-label>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="ingredientNameChange()">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
+        {{option.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-form-field *ngIf="ingredient.isLiquid" [style.width]="fontsize * 10.7 + 'px'">
+    <input matInput [(ngModel)]="ingredient.name" (change)=ingredientNameChange() [matAutocomplete]="auto" [formControl]="myControl">
+    <mat-label>Zutat</mat-label>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="ingredientNameChange()">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
+        {{option.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-form-field *ngIf="ingredient.isLiquid" [style.width]="fontsize * 5.5 + 'px'">
+    <input matInput [(ngModel)]="ingredient.alcoholLevel" (change)="changed.emit(ingredient)"
+           type="number" pattern="[0-9]*" inputmode="decimal">
+    <mat-label>Alkohol</mat-label>
+    <span matSuffix>%</span>
+  </mat-form-field>
+  <button *ngIf="!hideDelete" mat-icon-button (click)="delete.emit()">
+    <mat-icon>delete</mat-icon>
+  </button>
+
+  <button *ngIf="showSave"  disabled mat-icon-button (click)="delete.emit()">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>

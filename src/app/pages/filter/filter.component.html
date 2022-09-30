@@ -1,0 +1,38 @@
+
+<div >
+  <div class="container">
+    <div class="one">
+      <mat-card class="card" *ngFor="let juice of ingredientsService.juices"
+                [style.background-color]="getBackgroundColor(juice)" (click)="click(juice)">
+        <mat-label>{{juice.name}}</mat-label>
+      </mat-card>
+      <div *ngIf="ingredientsService.restCocktails.length > 0" style="height: 44px"></div>
+      <div style="height: 50px"></div>
+    </div>
+    <div class="two">
+      <mat-card class="card" *ngFor="let liquir of ingredientsService.liquids"
+                [style.background-color]="getBackgroundColor(liquir)" (click)="click(liquir)">
+        <mat-label>{{liquir.name}}</mat-label>
+      </mat-card>
+      <div style="height: 50px"></div>
+    </div>
+  </div>
+
+
+
+  <button color="warn" class="clear" *ngIf="ingredientsService.showClear()"
+          mat-raised-button (click)="ingredientsService.resetFilter()"><mat-label>Clear</mat-label>
+  </button>
+
+  <button color="primary" class="switch" *ngIf="ingredientsService.showClear()"
+          mat-raised-button (click)="ingredientsService.switchMindestensEins()">
+    <mat-label *ngIf="ingredientsService.mindestensEins">Suche: Min. 1</mat-label>
+    <mat-label *ngIf="!ingredientsService.mindestensEins">Suche: Exakt</mat-label>
+  </button>
+
+
+</div>
+
+
+
+
