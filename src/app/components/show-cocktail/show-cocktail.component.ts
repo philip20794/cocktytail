@@ -46,7 +46,7 @@ export class ShowCocktailComponent implements OnInit {
   }
 
   editCocktail(cocktail: cocktail): void {
-    const component = this.dialog.open(EditCocktailComponent, {autoFocus: false});
+    const component = this.dialog.open(EditCocktailComponent, {autoFocus: false, minWidth: '100vw'});
     component.componentInstance.cocktailService = this.cocktailService;
     component.componentInstance.cocktail = cocktail;
     component.afterClosed().subscribe(value => {
